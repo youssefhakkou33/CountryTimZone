@@ -144,7 +144,19 @@ def get_date_and_time(city, country):
         # Extract the date and time text
         date_and_time = clock_element.get_text()
 
-        return date_and_time
+         # Locate the element containing the date 
+        cal_element = soup.find("span", {"id": "ctdat"})
+        
+        # Extract the date text
+        date_element = cal_element.get_text()
+
+        #Locate the element containing the weather
+        weather_element  = soup.find("div", {"id": "wt-tp"})
+
+        #Extract the weather element
+        weather_element2= weather_element.get_text()
+
+        return date_and_time, date_element, weather_element2
     else:
         return f"Failed to retrieve the web page for {city}, {country}. Status code: {response.status_code}"
 
